@@ -1,6 +1,7 @@
-/*Don't forget to add the none to display at the end*/
-
-body{
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -15,14 +16,20 @@ body{
     gap: 5%;
 }
 
-.form-container{
 
-    border: 5px solid;
+.form-container {
+    border: 2px solid #ccc;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     display: none;
 }
 
-form{
-    margin: 5%;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .flex-container{
@@ -45,7 +52,7 @@ li{
     width: 20%;
     height: 30px;
     border-radius: 10px;
-    margin-top: 15%;
+    margin-top: 20%;
 }
 
 .grid-container *{
@@ -58,4 +65,12 @@ li{
     margin-left: 50%;
     border-radius: 10px;
     padding: 10px;
+}
+
+.button:hover{
+    background-color: greenyellow;
+}
+
+.read-button:hover, .delete-button:hover, .button:hover {
+    cursor: pointer;
 }

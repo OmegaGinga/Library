@@ -36,14 +36,12 @@ function addBookToLibrary() {
 function showBooks(books) {
     books.forEach(book => {
         const newCard = document.createElement('div');
-        const read = document.querySelector('.read').value;
-
         const bookTitle = document.createElement('div');
         const bookAuthor = document.createElement('div');
         const bookPages = document.createElement('div');
         const bookRead = document.createElement('div');
         const deleteButton = document.createElement('button');
-    
+        const readButton = document.createElement('button');
 
         bookTitle.textContent = `Title: ${book.title}`;
         bookTitle.classList.add('info');
@@ -69,8 +67,24 @@ function showBooks(books) {
             parent.remove();
         })
 
-        newCard.style.cssText =  'display: flex; flex-direction: column; gap: 10px; text-align: center; margin-top: 100px';
+        readButton.textContent = 'Read!';
+        newCard.appendChild(readButton);
+
+        readButton.addEventListener('click',()=>{
+            if(bookRead.textContent === 'Read: Yes'){
+                bookRead.textContent = 'Read: No';    
+            }else{
+                bookRead.textContent = 'Read: Yes';
+            }
+            
+        })
+
+        readButton.classList.add('read-button');
+        deleteButton.classList.add('delete-button');
+
+        newCard.style.cssText =  'display: flex; flex-direction: column; gap: 10px; text-align: center; margin-top: 150px';
         deleteButton.style.cssText = 'border-radius: 10px; padding: 5px 0px; background: red; color: #fff; font-weight: bold;'
+        readButton.style.cssText = 'border-radius: 10px; padding: 5px 0px; background: #24a0ed; color: #fff; font-weight: bold;'
 
 
         gridContainer.appendChild(newCard);
