@@ -18,7 +18,7 @@ body{
 .form-container{
 
     border: 5px solid;
-    
+    display: none;
 }
 
 form{
@@ -36,15 +36,16 @@ form{
 
 li{
     display: flex;
-    flex-direction: column;
+    
     padding-bottom: 10px;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .new-book{
     width: 20%;
     height: 30px;
     border-radius: 10px;
+    margin-top: 15%;
 }
 
 .grid-container *{

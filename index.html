@@ -10,24 +10,25 @@
     <div class="flex-container">
 
     <div class="form-container">
-        <form action="">
+        <form action="post">
 
             <ul class="forms">
                 <li>
-                    <label for="author">Author</label>
-                    <input type="text" name="author" id="author">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" class="title" placeholder="Ej: The Hobbit" required>
                 </li>
                 <li>
-                    <label for="title">Title</label>
-                    <input type="text" name="title" id="title">
-                </li>
+                    <label for="author">Author</label>
+                    <input type="text" name="author" id="author" class="author" placeholder="Ej: J.R.R. Tolkien" required>
+                </li>        
                 <li>
                     <label for="pages">Number of pages</label>
-                    <input type="text" name="pages" id="pages">
+                    <input type="number" name="pages" id="pages" class="pages" placeholder="Ej: 310" required>
                 </li>
                 <li>
-                    <label for="read">Read</label>
-                    <input type="text" name="read" id="read">
+                    <label>Read:</label>
+                    <label><input type="radio" name="read" class="read" value="yes" checked>Yes</label>
+                    <label><input type="radio" name="read" class="read" value="no">No</label>
                 </li>
             </ul>
             <button type="submit" class="submit">SUBMIT</button>

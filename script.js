@@ -1,22 +1,80 @@
 const gridContainer = document.querySelector('.grid-container');
 const newBook = document.querySelector('.new-book');
 const formContainer = document.querySelector('.form-container');
+const submit = document.querySelector('.submit');
 
-const myLibrary = ['lotr', 'Orgullo y Prejuicio', 'The hobbit'];
+const myLibrary = [
+    new Book('J.R.R. Tolkien', 'The Lord of the Rings', 1178, 'yes'),
+    new Book('Jane Austen', 'Pride and Prejudice', 279, 'no'),
+    new Book('J.R.R. Tolkien', 'The Hobbit', 310, 'yes')
+];
 
-function Book(){}
+function Book(author, title, pages, read) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.read = read;
 
-function addBookToLibrary(book){
-
-
+    this.info = function() {
+        return `${this.title}\n${this.author}\n${this.pages} pages\n${this.read}`;
+    };
 }
 
-function showBooks(books){
-    for(i = 0; i<books.length; i++){
-        const newCard = document.createElement('div');
-        newCard.textContent = books[i];
-        gridContainer.appendChild(newCard);
+function addBookToLibrary() {
+    const author = document.querySelector('.author').value;
+    const title = document.querySelector('.title').value;
+    const pages = document.querySelector('.pages').value;
+    const read = document.querySelector('input[name="read"]:checked').value;
+
+    if (author && title && pages && read) {
+        const book = new Book(author, title, pages, read);
+        myLibrary.push(book);
+        showBooks([book]);
     }
+}
+
+function showBooks(books) {
+    books.forEach(book => {
+        const newCard = document.createElement('div');
+        const read = document.querySelector('.read').value;
+
+        const bookTitle = document.createElement('div');
+        const bookAuthor = document.createElement('div');
+        const bookPages = document.createElement('div');
+        const bookRead = document.createElement('div');
+        const deleteButton = document.createElement('button');
+    
+
+        bookTitle.textContent = `Title: ${book.title}`;
+        bookTitle.classList.add('info');
+        newCard.appendChild(bookTitle);
+        
+        bookAuthor.textContent = `Author: ${book.author}`;
+        bookAuthor.classList.add('info');
+        newCard.appendChild(bookAuthor);
+
+        bookPages.textContent = `Pages: ${book.pages}`;
+        bookPages.classList.add('info');
+        newCard.appendChild(bookPages);
+
+        bookRead.textContent = `Read: ${book.read === 'yes' ? 'Yes' : 'No'}`;
+        bookRead.classList.add('info');
+        newCard.appendChild(bookRead);
+
+        deleteButton.textContent = 'Delete Book';
+        newCard.appendChild(deleteButton);
+
+        deleteButton.addEventListener('click',()=>{
+            const parent = deleteButton.parentElement;
+            parent.remove();
+        })
+
+        newCard.style.cssText =  'display: flex; flex-direction: column; gap: 10px; text-align: center; margin-top: 100px';
+        deleteButton.style.cssText = 'border-radius: 10px; padding: 5px 0px; background: red; color: #fff; font-weight: bold;'
+
+
+        gridContainer.appendChild(newCard);
+    });
 }
 
 showBooks(myLibrary);
@@ -29,4 +87,11 @@ newBook.addEventListener('click', () => {
         formContainer.style.display = 'none';
         newBook.textContent = 'NEW BOOK';
     }
+});
+
+submit.addEventListener('click', (event) => {    
+    addBookToLibrary();
+    formContainer.style.display = 'none';
+    newBook.textContent = 'NEW BOOK';
+    event.preventDefault();
 });
